@@ -1,55 +1,83 @@
 <template>
-  <v-app>
-    <v-app-bar
+  <v-app id="inspire">
+    <v-navigation-drawer
+      v-model="drawer"
       app
-      color="primary"
-      dark
+      temporary
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+     <v-avatar
+      color="indigo"
+      size="100"
+      class="ml-5 mt-3"
+    >
+      <span class="white--text headline">TU</span>
+    </v-avatar>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            Test User
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            testuser@blackmail.com
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
 
+      <v-divider></v-divider>
+    <v-list>
+      <v-list-item
+          v-for="item in sideMenu"
+          :key="item.title"
+          :to ="item.to"
+          link
+        >
+
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+    </v-navigation-drawer>
+
+    
+
+
+
+    <v-app-bar app elevate-on-scroll>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Music Player</v-toolbar-title>
+      
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
       </v-btn>
+
     </v-app-bar>
 
     <v-main>
-      <router-view/>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-
-export default {
-  name: 'App',
-
-  data: () => ({
-    //
-  }),
-};
+  export default {
+    data: () => ({ drawer: null,
+    sideMenu: [
+      { title: 'Home', icon: 'mdi-home-circle', to: '/' },
+      { title: 'Playlists', icon: 'mdi-playlist-play', to: '/playlist' },
+      { title: 'Songs ', icon: 'mdi-music-box', to:'/songs' },
+      { title: 'About', icon: 'mdi-help-box', to:'/about'},
+      
+    ], right: null })
+  }
 </script>
