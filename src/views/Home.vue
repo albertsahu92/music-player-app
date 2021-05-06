@@ -15,20 +15,19 @@
         :key="n"
         v-slot="{ active, toggle }"
       >
-      <v-hover>
+      <v-hover v-slot="{hover}">
         <v-card
           :color="active ? undefined : 'grey lighten-1'"
           class="ma-4"
           height="200"
           width="200"
           @click="toggle"
+          :elevation="hover ? 12:2"
+          :class="{'on-hover': hover}"
         >
      
-          <v-row
-            class="fill-height"
-            align="center"
-            justify="center"
-          >
+          
+          
             <v-scale-transition>
               <v-icon
                 v-if="active"
@@ -43,22 +42,35 @@
       </v-slide-item>
     </v-slide-group>
 
-      <v-expand-transition>
+  <v-expand-transition>
       <v-sheet
         v-if="model != null"
         height="200"
         tile
         
       >
-        <v-row
+        <v-col
           class="fill-height"
           align="center"
           justify="center"
         >
-          <h3 class="title">
+          <h3 class="title ma-3">
             Song - {{ model }}
           </h3>
-        </v-row>
+          
+          <v-btn v-for="(icon,index) in icons"
+          :key="index"
+          icon
+          class = "ma-3"
+          > 
+            <v-icon> {{icon}} </v-icon>
+
+          </v-btn>
+          
+
+
+        </v-col>
+        
       </v-sheet>
     </v-expand-transition>
 
@@ -66,8 +78,8 @@
   <h1>Recently Added</h1>
 
   <v-divider> </v-divider>
-
-    <v-list>
+  
+    <v-list nav>
       <v-list-item-group
         v-model="model1"
         
@@ -81,15 +93,29 @@
           <v-list-item-icon>
             <v-icon v-text="item.icon"></v-icon>
           </v-list-item-icon>
-
+        <v-row>
           <v-list-item-content>
             <v-list-item-title v-text="item.text"></v-list-item-title>
           </v-list-item-content>
+          <div>
+          <v-btn v-for="(icon,index) in icons"
+          :key="index"
+          icon
+          class = "ma-2"
+          > 
+            <v-icon
+            > {{icon}} </v-icon>
+
+          </v-btn>
+          </div>
+        </v-row>
           
         </v-list-item>
         <v-divider></v-divider>
         </div>
       </v-list-item-group>
+      
+      
       
     
     </v-list>
@@ -109,26 +135,36 @@
       icons: ['mdi-rewind', 'mdi-play', 'mdi-fast-forward'],
       items: [
         {
-          icon: 'mdi-play-circle',
+          icon: 'mdi-heart-outline',
           text: 'Song-1',
         },
         {
-          icon: 'mdi-play-circle',
+          icon: 'mdi-heart-outline',
           text: 'Song-2',
         },
         {
-          icon: 'mdi-play-circle',
+          icon: 'mdi-heart-outline',
           text: 'Song-3',
         },
         {
-          icon: 'mdi-play-circle',
+          icon: 'mdi-heart-outline',
           text: 'Song-4',
         },
         {
-          icon: 'mdi-play-circle',
+          icon: 'mdi-heart-outline',
           text: 'Song-5',
         },
-      ], model1:1
+      ], model1:0,
+      transparent: 'rgba(255, 255, 255, 0)',
     }),
   }
 </script>
+
+
+<style scoped> 
+
+.show-btns {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+</style>

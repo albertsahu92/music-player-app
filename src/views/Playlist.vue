@@ -4,6 +4,7 @@
   <v-divider> </v-divider>
 
   <div>
+
     <v-list>
       <v-list-group
         v-for="item in items"
@@ -11,7 +12,8 @@
         
         :prepend-icon="item.action"
         no-action
-        temporary
+        
+        
       >
         <template v-slot:activator>
           <v-list-item-content>
@@ -22,6 +24,7 @@
         <v-list-item
           v-for="child in item.items"
           :key="child.title"
+          link
         >
           <v-list-item-content>
             <v-list-item-title v-text="child.title"></v-list-item-title>
@@ -29,6 +32,7 @@
         </v-list-item>
       </v-list-group>
     </v-list>
+  
 
   </div>
 

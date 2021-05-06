@@ -13,6 +13,7 @@
         <v-list-item
           
         >
+        <v-row>
           <v-list-item-icon>
             <v-icon v-text="item.icon"></v-icon>
           </v-list-item-icon>
@@ -20,6 +21,20 @@
           <v-list-item-content>
             <v-list-item-title v-text="item.text"></v-list-item-title>
           </v-list-item-content>
+
+           <div>
+          <v-btn v-for="(icon,index) in icons"
+          :key="index"
+          icon
+          class = "ma-2"
+          > 
+            <v-icon
+            > {{icon}} </v-icon>
+
+          </v-btn>
+          </div>
+
+        </v-row>
           
         </v-list-item>
         <v-divider></v-divider>
@@ -30,7 +45,7 @@
     </v-list>
 
 
-  </div>
+  
 
   
 </div>
@@ -41,26 +56,27 @@ export default {
     name: 'Songs',
    data : () => ({ items: [
         {
-          icon: 'mdi-play-circle',
+          icon: 'mdi-heart-outline',
           text: 'Song-1',
         },
         {
-          icon: 'mdi-play-circle',
+          icon: 'mdi-heart-outline',
           text: 'Song-2',
         },
         {
-          icon: 'mdi-play-circle',
+          icon: 'mdi-heart-outline',
           text: 'Song-3',
         },
         {
-          icon: 'mdi-play-circle',
+          icon: 'mdi-heart-outline',
           text: 'Song-4',
         },
         {
-          icon: 'mdi-play-circle',
+          icon: 'mdi-heart-outline',
           text: 'Song-5',
         },
-      ], model1:1
+      ], model1:1,
+      icons: ['mdi-rewind', 'mdi-play', 'mdi-fast-forward'],
 
     })
   }

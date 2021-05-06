@@ -55,11 +55,36 @@
       <v-toolbar-title>Music Player</v-toolbar-title>
       
       <v-spacer></v-spacer>
+    <div class="text-center">
+      <v-menu offset-y
+        
+      >
+        <template v-slot:activator="{on, attrs}"
+        
+        >
+          
+          <v-btn icon 
+          v-bind="attrs" 
+          v-on="on"
+          >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+          
+        </template>
 
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+        <v-list>
+        <v-list-item
+          v-for="(item, index) in dotsMenu"
+          :key="index"
+          link
+          
+        >
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+      </v-menu>
+    </div>
+      
 
     </v-app-bar>
 
@@ -78,6 +103,14 @@
       { title: 'Songs ', icon: 'mdi-music-box', to:'/songs' },
       { title: 'About', icon: 'mdi-help-box', to:'/about'},
       
-    ], right: null })
+    ],
+    
+    dotsMenu: [
+      { title: 'Search'},
+      { title: 'Add to Playlist'},
+      { title: 'Add to Favorites'}
+    ]
+    ,
+    right: null })
   }
 </script>
